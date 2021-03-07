@@ -1,0 +1,39 @@
+﻿@page
+@model OdeToFood.Pages.Restaurants.ListModel
+@{
+    
+}
+
+<h1>Restaurants @Model.Message</h1>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input class="form-control" type="search" asp-for="SearchTerm" value="" />
+            <span class="input-group-append">
+                <button class="btn-outline-primary" type="submit">Search</button>
+            </span>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead class="table-dark">
+        <td>Name</td>
+        <td>Location</td>
+        <td>Cuisine</td>
+        <td>Action</td>
+    </thead>
+
+    @foreach (var restaurant in Model.Restaurants)
+    {
+        <tr>
+            <td>@restaurant.Name</td>
+            <td>@restaurant.Location</td>
+            <td>@restaurant.Cuisine</td>
+            <td>
+                <a class="btn btn-primary" asp-page="./Detail" asp-route-restaurantId="@restaurant.Id">Detail</a>
+            </td>
+        </tr>
+    }
+</table>
